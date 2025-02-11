@@ -236,3 +236,10 @@ phones = {
         "💰Narxi": 100
     }
 }
+
+iphone = {}
+
+samsung = {}
+
+xiaomi = {}
+

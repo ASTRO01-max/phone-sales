@@ -6,7 +6,7 @@ from phone import *
 from phonePhotos import *
 import time
 
-API_TOKEN = '8047119512:AAHOGhPKa1CJioPt1xEHpnR4EOj-b-C9U-4'
+API_TOKEN = 'API_Token'
 bot = telebot.TeleBot(API_TOKEN)
 
 user_orders = {}  
@@ -112,8 +112,8 @@ def order_phone(call):
         bot.send_message(call.message.chat.id, f"📱 {phone['📱Model']} avvaldan buyurtma ro'yxatida mavjud!")
 
     markup = InlineKeyboardMarkup()
-    btn_new_order = InlineKeyboardButton("Ha", callback_data="new_order")
-    btn_no_order = InlineKeyboardButton("Yo'q", callback_data="no_order")
+    btn_new_order = InlineKeyboardButton("Ha✅", callback_data="new_order")
+    btn_no_order = InlineKeyboardButton("Yo'q❌", callback_data="no_order")
     markup.add(btn_new_order, btn_no_order)
 
     bot.send_message(call.message.chat.id, "Yana buyurtma berishni xohlaysizmi?", reply_markup=markup)
@@ -203,8 +203,9 @@ def handle_location(message):
         )
         markup = InlineKeyboardMarkup()
         admin_button = InlineKeyboardButton("Admin🧑🏻‍💻", callback_data="admins")
-        contact_button = InlineKeyboardButton("Aloqa 📞", callback_data="contact")
-        markup.add(contact_button, admin_button)
+        contact_button = InlineKeyboardButton("Aloqa📞", callback_data="contact")
+        cart_button = InlineKeyboardButton("Karzinka🛒", callback_data="cart2")
+        markup.add(contact_button, admin_button, cart_button)
         bot.send_message(chat_id, "To'liq ma'lumot olish uchun biz bilan bog'laning.", reply_markup=markup)
 
 @bot.callback_query_handler(func=lambda call: call.data == "contact")
@@ -215,7 +216,34 @@ def contact_info(call):
 def admin_info(call):
     bot.send_message(call.message.chat.id, "Biz bilan bog'lanish uchun🧑🏻‍💻: @martin_0_001")
 
+@bot.callback_query_handler(func=lambda call: call.data == "cart2")
+def cart_info(call):
+    username = call.from_user.username or "Ismi ko'rsatilmagan"
+    chat_id = call.message.chat.id
+
+    if username in user_orders and user_orders[username]:
+        total_price = sum(order['price'] for order in user_orders[username])
+        orders_message = " Sizning buyurtmalaringiz:\n\n"
+
+        for order in user_orders[username]:
+            orders_message += f"📱 {order['model']} - 💰 {order['price']} USD\n"
+
+        orders_message += f"\n💰 Jami: {total_price} USD"
+        markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+        markup.add(KeyboardButton("Aloqa telefon no'merni yuborish ", request_contact=True))
+        markup.add(KeyboardButton("Geolokatsiya yuborish ", request_location=True))
+        bot.send_message(chat_id, orders_message, reply_markup=markup)
+    else:
+        bot.send_message(chat_id, "Hali buyurtmalar mavjud emas.")
+
+    bot.send_message(chat_id, "Iltimos telefon no'meringizni yuboring.")
+
+
 print("Bot ishlayapti...")
 bot.infinity_polling() 
+
+
+
+
 
 
