@@ -1,15 +1,12 @@
 import telebot
 from telebot.types import *
-from telebot import types
-import os
 from datetime import datetime
-from phone import *
-from phonePhotos import *
+from phone import phones, phone_details  # Har ikkala dict import qilingan bo'lishi kerak
+from phonePhotos import phone_photos     # model -> rasm manzili dict
 import time
 
-API_TOKEN = '8047119512:AAHOGhPKa1CJioPt1xEHpnR4EOj-b-C9U-4'
+API_TOKEN = 'YOUR_BOT_TOKEN_HERE'
 bot = telebot.TeleBot(API_TOKEN)
-
 user_orders = {}  
 
 def save_order_to_file(username, phone_model, price):
@@ -64,10 +61,11 @@ def show_xiaomi_models(call):
 
 @bot.callback_query_handler(func=lambda call: call.data.startswith("info_"))
 def show_phone_info(call):
-    _,model = call.data.split("_", 1) 
+    model = call.data.split("_", 1)[1]
     phone = phone_details.get(model)
-    if model in phones:
-        image_path = phones[model]
+    image_path = phone_photos.get(model)
+
+    if phone and image_path:
         caption = (
             f"📱 <b>Model:</b> {model}\n"
             f"📲 <b>Xususiyatlar:</b> {phone['Xususiyatlari']}\n"
@@ -76,29 +74,57 @@ def show_phone_info(call):
             f"💰 <b>Narxi:</b> {phone['Narxi']}\n\n"
             f"Agar sizga yoqsa, pastdagi tugma orqali buyurtma berishingiz mumkin 👇"
         )
-
         markup = InlineKeyboardMarkup()
         markup.add(
             InlineKeyboardButton("Buyurtma berish 🛒", callback_data=f"order_{model}"),
             InlineKeyboardButton("Orqaga 🔙", callback_data="back_to_brands")
         )
-
         try:
-            with open(image_path, 'rb') as photo_file:
-                bot.send_photo(chat_id=call.message.chat.id, photo=photo_file,
-                               caption=caption, parse_mode="HTML", reply_markup=markup)
+            with open(image_path, 'rb') as photo:
+                bot.send_photo(call.message.chat.id, photo=photo, caption=caption, parse_mode='HTML', reply_markup=markup)
         except FileNotFoundError:
             bot.send_message(call.message.chat.id, "❌ Telefon rasmi topilmadi.")
     else:
-        bot.send_message(call.message.chat.id, "❌ Ushbu model topilmadi.")
+        bot.send_message(call.message.chat.id, "❌ Ma'lumot topilmadi.")
+
+@bot.callback_query_handler(func=lambda call: call.data.startswith("order_"))
+def order_phone(call):
+    model = call.data.split("_", 1)[1]
+    username = call.from_user.username or "Ismi ko'rsatilmagan"
+    phone = phone_details.get(model)
+
+    if phone:
+        narx = phone.get('Narxi', 'Noma’lum')
+        try:
+            narx_int = int(narx.replace(" USD", "").strip())
+        except:
+            narx_int = 0
+
+        if username not in user_orders:
+            user_orders[username] = []
+
+        if not any(order['model'] == model for order in user_orders[username]):
+            user_orders[username].append({"model": model, "price": narx_int})
+            save_order_to_file(username, model, narx)
+            bot.send_message(call.message.chat.id, f"📱 {model} uchun buyurtmangiz qabul qilindi!")
+        else:
+            bot.send_message(call.message.chat.id, f"📱 {model} avvaldan buyurtma ro'yxatida mavjud!")
+
+        markup = InlineKeyboardMarkup()
+        btn_new_order = InlineKeyboardButton("Ha✅", callback_data="new_order")
+        btn_no_order = InlineKeyboardButton("Yo'q❌", callback_data="no_order")
+        markup.add(btn_new_order, btn_no_order)
+        bot.send_message(call.message.chat.id, "Yana buyurtma berishni xohlaysizmi?", reply_markup=markup)
+    else:
+        bot.send_message(call.message.chat.id, "❌ Buyurtma berishda xatolik yuz berdi.")
+
 
 @bot.callback_query_handler(func=lambda call: call.data == "back_to_brands")
 def back_to_brands(call):
     markup = InlineKeyboardMarkup()
-    markup.add(InlineKeyboardButton("iPhone telefonlari", callback_data="iphone"))
-    markup.add(InlineKeyboardButton("Samsung telefonlari", callback_data="samsung"))
-    markup.add(InlineKeyboardButton("XiaoMi telefonlari", callback_data="xiaomi"))
-    
+    markup.add(InlineKeyboardButton("iPhone telefonlari📱", callback_data="iphone"))
+    markup.add(InlineKeyboardButton("Samsung telefonlari📱", callback_data="samsung"))
+    markup.add(InlineKeyboardButton("XiaoMi telefonlari📱", callback_data="xiaomi"))
     bot.send_message(call.message.chat.id, "Telefon markalarini tanlang📱:", reply_markup=markup)
 
 @bot.callback_query_handler(func=lambda call: call.data.startswith("order_"))

@@ -225,3 +225,24 @@ Foydalanuvchi: martin_0_001, Buyurtma: Samsung Galaxy Z Fold 3 (Yangi), Narxi: 2
 Foydalanuvchi: martin_0_001, Buyurtma: iPhone 14 Pro Max (Yangi), Narxi: 1600, Vaqt: 2025-01-25 21:37:47
 Foydalanuvchi: martin_0_001, Buyurtma: Samsung Galaxy S22 Ultra (Yangi), Narxi: 1600, Vaqt: 2025-01-25 21:38:07
 Foydalanuvchi: martin_0_001, Buyurtma: Xiaomi Mi 11 Ultra (Yangi), Narxi: 1100, Vaqt: 2025-01-25 21:38:23
+Foydalanuvchi: martin_0_001, Buyurtma: iPhone 14 Pro (Yangi), Narxi: 1500, Vaqt: 2025-02-11 13:35:49
+Foydalanuvchi: martin_0_001, Buyurtma: Samsung Galaxy Z Flip (Yangi), Narxi: 1400, Vaqt: 2025-02-11 13:36:18
+Foydalanuvchi: martin_0_001, Buyurtma: Xiaomi Mi 11 Ultra (Yangi), Narxi: 1100, Vaqt: 2025-02-11 13:37:22
+Foydalanuvchi: Ismi ko'rsatilmagan, Buyurtma: iPhone 13 (Yangi), Narxi: 1100, Vaqt: 2025-02-15 12:40:23
+Foydalanuvchi: Ismi ko'rsatilmagan, Buyurtma: Xiaomi Redmi 9 (Yangi), Narxi: 150, Vaqt: 2025-02-15 12:40:37
+Foydalanuvchi: martin_0_001, Buyurtma: iPhone 14 Pro (Yangi), Narxi: 1500, Vaqt: 2025-02-15 12:41:24
+Foydalanuvchi: Ismi ko'rsatilmagan, Buyurtma: iPhone 14 Pro Max (Yangi), Narxi: 1600, Vaqt: 2025-02-15 12:44:16
+Foydalanuvchi: martin_0_001, Buyurtma: iPhone 14 Pro (Yangi), Narxi: 1500, Vaqt: 2025-03-04 11:14:35
+Foydalanuvchi: martin_0_001, Buyurtma: Samsung Galaxy Z Fold 3 (Yangi), Narxi: 2000, Vaqt: 2025-03-04 11:14:57
+Foydalanuvchi: martin_0_001, Buyurtma: iPhone 14 Pro (Yangi), Narxi: 1500, Vaqt: 2025-03-04 11:19:21
+Foydalanuvchi: martin_0_001, Buyurtma: Xiaomi Mi 11 Ultra (Yangi), Narxi: 1100, Vaqt: 2025-03-04 11:19:37
+Foydalanuvchi: martin_0_001, Buyurtma: iPhone 14 Pro (Yangi), Narxi: 1500, Vaqt: 2025-03-14 13:41:36
+Foydalanuvchi: martin_0_001, Buyurtma: Samsung Galaxy S22 Ultra (Yangi), Narxi: 1600, Vaqt: 2025-03-14 13:41:52
+Foydalanuvchi: martin_0_001, Buyurtma: Xiaomi Mi 11 Ultra (Yangi), Narxi: 1100, Vaqt: 2025-03-14 13:42:14
+Foydalanuvchi: martin_0_001, Buyurtma: Samsung Galaxy Z Flip (Yangi), Narxi: 1400, Vaqt: 2025-03-14 13:44:05
+Foydalanuvchi: martin_0_001, Buyurtma: Samsung Galaxy Z Fold 3 (Yangi), Narxi: 2000, Vaqt: 2025-03-14 13:48:02
+Foydalanuvchi: martin_0_001, Buyurtma: Xiaomi Poco X3 Pro (Yangi), Narxi: 300, Vaqt: 2025-03-14 13:53:11
+Foydalanuvchi: martin_0_001, Buyurtma: Xiaomi Redmi Note 10 Pro (Yangi), Narxi: 350, Vaqt: 2025-03-14 13:55:51
+Foydalanuvchi: martin_0_001, Buyurtma: Xiaomi Redmi 9A (Yangi), Narxi: 100, Vaqt: 2025-03-14 13:55:57
+Foydalanuvchi: martin_0_001, Buyurtma: Samsung Galaxy Note 20 Ultra (Yangi), Narxi: 1400, Vaqt: 2025-04-02 15:48:04
+Foydalanuvchi: martin_0_001, Buyurtma: iPhone 14 Pro Max (Yangi), Narxi: 1600, Vaqt: 2025-04-17 16:00:58

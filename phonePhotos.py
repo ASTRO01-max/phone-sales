@@ -1,4 +1,4 @@
-phone_PHOTOS = {
+phones = {
     "iPhone X📱": r"C:\Users\hp\Desktop\iPhones\iPhone X.png",
     "iPhone Xr📱": r"C:\Users\hp\Desktop\iPhones\iPhone Xr.jpg",
     "iPhone Xs📱": r"C:\Users\hp\Desktop\iPhones\ip xs.jpg",
